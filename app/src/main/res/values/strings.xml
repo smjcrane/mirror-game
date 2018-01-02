@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mirrors</string>
+    <string name="title_activity_level_select">ActivityLevelSelect</string>
+    <string name="title_activity_play_level">ActivityPlayLevel</string>
 </resources>
