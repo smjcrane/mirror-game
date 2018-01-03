@@ -16,15 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ActivityLevelSelect"
-            android:label="@string/title_activity_level_select"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ActivityPlayLevel"
-            android:label="@string/title_activity_play_level"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ActivityTutorial"></activity>
+        <activity android:name=".ActivityLevelSelect" />
+        <activity android:name=".ActivityPlayLevel" />
+        <activity android:name=".ActivityTutorial" />
     </application>
 
 </manifest>
