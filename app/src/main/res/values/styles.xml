@@ -20,6 +20,7 @@
         <!--used by list_item_level_select.xml-->
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_margin">5dp</item>
+        <item name="android:textSize">25sp</item>
     </style>
 
 </resources>
