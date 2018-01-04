@@ -7,7 +7,10 @@ import android.util.Log;
  */
 
 public class Level {
-    private static int[] imageResources = {R.drawable.blank, R.drawable.simple_diagonal};
+    public static final int BLANK = 0;
+    public static final int DIAGONAL = 1;
+    public static final int ROUND = 2;
+    private static int[] imageResources = {R.drawable.blank, R.drawable.simple_diagonal, R.drawable.round};
 
     private int number;
     private String name;
@@ -56,7 +59,7 @@ public class Level {
     private static int[][][] easyLevels = {
             {{0, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}},
             {{1, 0, 0, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {1, 0, 0, 1}},
-            {{1, 0, 1, 0, 1}, {0, 1, 0, 1, 0}, {1, 0, 1, 0, 0}, {0, 0, 0, 1, 0}, {1, 0, 0, 1, 0}}
+            {{1, 0, 1, 0, 1}, {0, 1, 0, 1, 0}, {1, 0, 2, 0, 0}, {0, 0, 0, 0, 0}, {1, 0, 0, 1, 0}}
     };
 
     public static int getNumberOfLevels(){
