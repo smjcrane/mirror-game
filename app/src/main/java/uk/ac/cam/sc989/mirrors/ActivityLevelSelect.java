@@ -27,7 +27,9 @@ public class ActivityLevelSelect extends AppCompatActivity {
         setContentView(R.layout.activity_level_select);
 
         ArrayList<Level> levels = new ArrayList<>();
-        levels.add(new Level());
+        for (int i = 0; i < Level.getNumberOfLevels(); i++) {
+            levels.add(new Level(i));
+        }
 
         listOfLevels = findViewById(R.id.listOfLevels);
         LevelSelectListAdapter adapter = new LevelSelectListAdapter(this, R.layout.list_item_level_select, levels);
@@ -36,6 +38,7 @@ public class ActivityLevelSelect extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(ActivityLevelSelect.this, ActivityPlayLevel.class);
+                intent.putExtra("levelNumber", i);
                 startActivity(intent);
             }
         });

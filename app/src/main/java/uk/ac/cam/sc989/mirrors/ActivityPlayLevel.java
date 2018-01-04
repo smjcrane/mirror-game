@@ -1,5 +1,6 @@
 package uk.ac.cam.sc989.mirrors;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,9 +18,11 @@ public class ActivityPlayLevel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_level);
 
+        Intent caller = getIntent();
+        int levelNumber = caller.getIntExtra("levelNumber", 0);
+
         GridLayout grid = findViewById(R.id.grid);
-        grid.setColumnCount(4);
-        BoardManager board = new BoardManager(this, grid, new Level());
+        BoardManager board = new BoardManager(this, grid, new Level(levelNumber));
         board.draw();
     }
 

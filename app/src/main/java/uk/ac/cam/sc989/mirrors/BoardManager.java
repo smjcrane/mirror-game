@@ -23,8 +23,9 @@ public class BoardManager{
         mContext = c;
         this.level = level;
         this.grid = grid;
-        this.width = level.getImages().length;
-        this.height = level.getImages()[0].length;
+        this.height = level.getImages().length;
+        this.width = level.getImages()[0].length;
+        grid.setColumnCount(width);
     }
 
     public void draw(){
@@ -60,7 +61,7 @@ public class BoardManager{
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setPadding(8, 8, 8, 8);
         GridView.LayoutParams params = new GridView.LayoutParams(200, 200);
-        imageView.setImageResource(level.getImages()[position / 4][position % 4]);
+        imageView.setImageResource(level.getImages()[position / width][position % width]);
         imageView.setLayoutParams(params);
         return imageView;
     }

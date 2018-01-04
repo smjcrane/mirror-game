@@ -13,12 +13,16 @@ public class Level {
     private String name;
     private int[][] piece_identifiers;
     private boolean completed;
+    private int height;
+    private int width;
 
-    public Level(){
-        number = 0;
+    public Level(int number){
+        this.number = number;
         name = "Boring Level";
         completed = false;
-        piece_identifiers = new int[][] {{0, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}};
+        piece_identifiers = easyLevels[number];
+        this.height = piece_identifiers.length;
+        this.width = piece_identifiers[0].length;
     }
 
     public int getNumber(){
@@ -34,11 +38,11 @@ public class Level {
     }
 
     public int[][] getImages(){
-        int[][] imgs = new int[4][4];
-        for (int i = 0; i<4; i++){
+        int[][] imgs = new int[height][width] ;
+        for (int i = 0; i<height; i++){
             int[] row = piece_identifiers[i];
-            int[] rowImgs = new int[4];
-            for (int j = 0; j<4; j++){
+            int[] rowImgs = new int[width];
+            for (int j = 0; j<width; j++){
                 int piece = row[j];
                 rowImgs[j] = imageResources[piece];
             }
@@ -49,4 +53,13 @@ public class Level {
 
     }
 
+    private static int[][][] easyLevels = {
+            {{0, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}},
+            {{1, 0, 0, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {1, 0, 0, 1}},
+            {{1, 0, 1, 0, 1}, {0, 1, 0, 1, 0}, {1, 0, 1, 0, 0}, {0, 0, 0, 1, 0}, {1, 0, 0, 1, 0}}
+    };
+
+    public static int getNumberOfLevels(){
+        return easyLevels.length;
+    }
 }
