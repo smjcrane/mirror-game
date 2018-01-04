@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.GridLayout;
 import android.widget.GridView;
 
 public class ActivityPlayLevel extends AppCompatActivity {
@@ -16,9 +17,10 @@ public class ActivityPlayLevel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_level);
 
-        GridView gridView = findViewById(R.id.grid);
-        gridView.setNumColumns(4);
-        gridView.setAdapter(new BoardGridAdapter(this, new Level()));
+        GridLayout grid = findViewById(R.id.grid);
+        grid.setColumnCount(4);
+        BoardManager board = new BoardManager(this, grid, new Level());
+        board.draw();
     }
 
 }

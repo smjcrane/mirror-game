@@ -7,7 +7,7 @@ import android.util.Log;
  */
 
 public class Level {
-    private static int[] imageResources = {R.drawable.empty_star, R.drawable.full_star};
+    private static int[] imageResources = {R.drawable.blank, R.drawable.simple_diagonal};
 
     private int number;
     private String name;
