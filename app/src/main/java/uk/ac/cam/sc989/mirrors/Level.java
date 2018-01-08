@@ -40,6 +40,10 @@ public class Level {
         return completed;
     }
 
+    public void rotate(int x, int y){
+        piece_rotations[y][x] += 1;
+    }
+
     public int[][] getImages(){
         int[][] imgs = new int[height][width] ;
         for (int i = 0; i<height; i++){

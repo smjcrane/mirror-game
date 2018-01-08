@@ -43,9 +43,10 @@ public class BoardManager{
     }
 
     public void clear(){
-        for (int i = 0; i < grid.getChildCount(); i++){
+        for (int i = 0; i < grid.getChildCount();){
             grid.removeView(grid.getChildAt(0));
         }
+
     }
 
     public int getCount() {
@@ -61,7 +62,7 @@ public class BoardManager{
     }
 
     // create a new ImageView
-    public View getView(int position) {
+    public View getView(final int position) {
         ImageView imageView;
         imageView = new ImageView(mContext);
         imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
@@ -71,6 +72,13 @@ public class BoardManager{
         imageView.setImageResource(level.getImages()[position / width][position % width]);
         imageView.setLayoutParams(params);
         imageView.setRotation(level.getRotations()[position / width][position % width] * 90);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                level.rotate(position % width, position / width);
+                draw();
+            }
+        });
         return imageView;
     }
 
