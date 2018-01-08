@@ -1,6 +1,8 @@
 package uk.ac.cam.sc989.mirrors;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -18,6 +20,7 @@ public class BoardManager{
     private GridLayout grid;
     private int width;
     private int height;
+    private int screenWidth;
 
     public BoardManager(Context c, GridLayout grid, Level level) {
         mContext = c;
@@ -29,6 +32,10 @@ public class BoardManager{
     }
 
     public void draw(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenWidth = displayMetrics.widthPixels;
+
         clear();
         for (int i =0; i < width * height; i ++){
             grid.addView(getView(i));
@@ -60,9 +67,10 @@ public class BoardManager{
         imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setPadding(8, 8, 8, 8);
-        GridView.LayoutParams params = new GridView.LayoutParams(200, 200);
+        GridView.LayoutParams params = new GridView.LayoutParams(screenWidth / (width+1), screenWidth / (width+1));
         imageView.setImageResource(level.getImages()[position / width][position % width]);
         imageView.setLayoutParams(params);
+        imageView.setRotation(level.getRotations()[position / width][position % width] * 90);
         return imageView;
     }
 

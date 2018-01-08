@@ -1,7 +1,5 @@
 package uk.ac.cam.sc989.mirrors;
 
-import android.util.Log;
-
 /**
  * Created by Simon on 02/01/2018.
  */
@@ -15,15 +13,17 @@ public class Level {
     private int number;
     private String name;
     private int[][] piece_identifiers;
+    private int[][] piece_rotations;
     private boolean completed;
     private int height;
     private int width;
 
     public Level(int number){
         this.number = number;
-        name = "Boring Level";
+        name = "Level " + Integer.toString(number);
         completed = false;
-        piece_identifiers = easyLevels[number];
+        piece_identifiers = easyLevelsIdentifiers[number];
+        piece_rotations = easyLevelsRotations[number];
         this.height = piece_identifiers.length;
         this.width = piece_identifiers[0].length;
     }
@@ -51,18 +51,28 @@ public class Level {
             }
             imgs[i]=rowImgs;
         }
-        Log.d("LEVEL", imgs.toString());
         return imgs;
-
     }
 
-    private static int[][][] easyLevels = {
+    public int[][] getRotations(){
+        return piece_rotations;
+    }
+
+    private static int[][][] easyLevelsIdentifiers = {
             {{0, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}},
             {{1, 0, 0, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {1, 0, 0, 1}},
             {{1, 0, 1, 0, 1}, {0, 1, 0, 1, 0}, {1, 0, 2, 0, 0}, {0, 0, 0, 0, 0}, {1, 0, 0, 1, 0}}
     };
 
+    private static int[][][] easyLevelsRotations = {
+            {{0, 0, 0, 0}, {0, 2, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}},
+            {{1, 0, 0, 2}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 3}},
+            {{2, 0, 3, 0, 1}, {0, 1, 0, 3, 0}, {2, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {2, 0, 0, 3, 0}}
+    };
+
+
+
     public static int getNumberOfLevels(){
-        return easyLevels.length;
+        return easyLevelsIdentifiers.length;
     }
 }
