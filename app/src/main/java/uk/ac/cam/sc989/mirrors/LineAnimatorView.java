@@ -40,14 +40,7 @@ public class LineAnimatorView extends View {
         super(context, attrs);
 
         pointsToDraw = new ArrayList<>();
-        pointsToDraw.add(new Point(0, 0));
-        pointsToDraw.add(new Point(100, 100));
-        pointsToDraw.add(new Point(100, 200));
-        pointsToDraw.add(new Point(500, 500));
-
         index = 0;
-        previousPoint = pointsToDraw.get(0);
-        nextPoint = pointsToDraw.get(1);
         currentPosition = 0;
     }
 
@@ -69,7 +62,7 @@ public class LineAnimatorView extends View {
         drawFromPoints(canvas);
 
         if (nextPoint != null) {
-            currentPosition += 0.1; //fiddle factor here
+            currentPosition += 0.01;
             canvas.drawLine(previousPoint.x, previousPoint.y,
                     previousPoint.x + currentPosition * (nextPoint.x - previousPoint.x),
                     previousPoint.y + currentPosition * (nextPoint.y - previousPoint.y),
@@ -85,7 +78,7 @@ public class LineAnimatorView extends View {
                 }
             }
 
-            postInvalidateDelayed(300); // set time here
+            postInvalidateDelayed(1); // set time here
         }
     }
 
@@ -96,22 +89,4 @@ public class LineAnimatorView extends View {
             canvas.drawLine(start.x, start.y, end.x, end.y, paint);
         }
     }
-
-    private void drawCurrent(Canvas canvas){
-        currentPosition += 0.1; //fiddle factor here
-        canvas.drawLine(previousPoint.x, previousPoint.y,
-                previousPoint.x + currentPosition * (nextPoint.x - previousPoint.x),
-                previousPoint.y + currentPosition * (nextPoint.y - previousPoint.y),
-                paint);
-        if (currentPosition == 1){
-            previousPoint = nextPoint;
-            index++;
-            if (index < pointsToDraw.size()) {
-                nextPoint = pointsToDraw.get(index);
-            } else {
-                nextPoint = null;
-            }
-        }
-    }
-
 }
