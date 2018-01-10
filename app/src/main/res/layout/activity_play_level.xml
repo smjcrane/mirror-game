@@ -19,4 +19,13 @@
         app:layout_constraintTop_toTopOf="parent">
     </GridLayout>
 
+    <uk.ac.cam.sc989.mirrors.LineAnimatorView
+        android:id="@+id/laser"
+        app:layout_constraintLeft_toLeftOf="@+id/grid"
+        app:layout_constraintRight_toRightOf="@+id/grid"
+        app:layout_constraintTop_toTopOf="@+id/grid"
+        app:layout_constraintBottom_toBottomOf="@+id/grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </android.support.constraint.ConstraintLayout>

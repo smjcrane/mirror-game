@@ -22,7 +22,8 @@ public class ActivityPlayLevel extends AppCompatActivity {
         int levelNumber = caller.getIntExtra("levelNumber", 0);
 
         GridLayout grid = findViewById(R.id.grid);
-        BoardManager board = new BoardManager(this, grid, new Level(levelNumber));
+        LineAnimatorView viewLaser = findViewById(R.id.laser);
+        BoardManager board = new BoardManager(this, grid, viewLaser, new Level(levelNumber));
         board.draw();
     }
 

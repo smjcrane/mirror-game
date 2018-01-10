@@ -5,10 +5,10 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 /**
  * Created by Simon on 03/01/2018.
@@ -21,14 +21,16 @@ public class BoardManager{
     private int width;
     private int height;
     private int screenWidth;
+    private LineAnimatorView laser;
 
-    public BoardManager(Context c, GridLayout grid, Level level) {
+    public BoardManager(Context c, GridLayout grid, LineAnimatorView laser, Level level) {
         mContext = c;
         this.level = level;
         this.grid = grid;
         this.height = level.getImages().length;
         this.width = level.getImages()[0].length;
         grid.setColumnCount(width);
+        this.laser = laser;
     }
 
     public void draw(){
@@ -40,6 +42,10 @@ public class BoardManager{
         for (int i =0; i < width * height; i ++){
             grid.addView(getView(i));
         }
+
+        ViewGroup.LayoutParams params = grid.getLayoutParams();
+        laser.setLayoutParams(params);
+        laser.bringToFront();
     }
 
     public void clear(){
@@ -47,18 +53,6 @@ public class BoardManager{
             grid.removeView(grid.getChildAt(0));
         }
 
-    }
-
-    public int getCount() {
-        return 16;
-    }
-
-    public Object getItem(int position) {
-        return null;
-    }
-
-    public long getItemId(int position) {
-        return 0;
     }
 
     // create a new ImageView
@@ -77,6 +71,7 @@ public class BoardManager{
             public void onClick(View view) {
                 level.rotate(position % width, position / width);
                 draw();
+                laser.fire();
             }
         });
         return imageView;
